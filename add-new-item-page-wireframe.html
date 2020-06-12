@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles/style.css">
+  <title>Bookmark App</title>
+</head>
+<body>
+  <header>Bookmarks</header>
+  <main>
+
+    <div class="wrapper">
+      <div class="add-new-container">
+        <form class="add-new-form">
+          <div class="title">
+            <label for="add-new-bookmark">Add New Bookmark</label>
+          </div>
+          <span>
+            <input type="text" name="add-bookmark" placeholder="http://website.com" required>
+          </span>
+          <span>
+            <input type="text" name="rating" placeholder="add rating" required>
+          </span>
+          <div class="text-description">
+            <textarea name="description">Enter Description here...</textarea>
+          </div>
+          <span>
+            <button id="js-cancel">cancel</button>
+          </span>
+          <span>
+            <button id="js-submit">submit</button>
+          </span>
+
+        </form>
+      </div>
+    </div>
+  </main>
+  
+  <script src="scripts/index.js"></script>
+</body>
+</html>
