@@ -73,7 +73,7 @@ li {
 .add-new-container {
   display: flex;
   justify-content: center;
-  align-items: stretch;
+  flex-direction: column;
 }
 
 .add-new-form {
@@ -83,8 +83,6 @@ li {
 }
 
 .text-description {
-  flex: 1;
-  align-self: s;
   padding: 8px;
 }
 
@@ -100,6 +98,17 @@ textarea {
   height: 80px;
   font-family: 'Roboto', sans-serif;
   border-radius: 4px;
+}
+
+h2 {
+  font-family: 'Roboto', sans-serif;
+}
+
+label {
+  font-weight: 400;
+  font-size: 15px;
+  display: block;
+  padding: 4px;
 }
 
 button {
