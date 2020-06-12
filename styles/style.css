@@ -131,3 +131,10 @@ a:link { color: black }
 a:visited { color: black; }
 a:hover { color: black; }
 a:active { color: black; }
+
+@media all and (min-width: 600px) {
+  .bookmark-item {
+    flex-direction: row;
+    
+  } 
+}
