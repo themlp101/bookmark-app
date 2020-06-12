@@ -4,6 +4,7 @@
   margin-top: 10px;
   margin-bottom: 10px;
   border: solid 2px;
+  border-radius: 5px;
   background-color: hsl(220, 20%, 70%);
 }
 
@@ -24,6 +25,7 @@
   text-align: center;
   margin: 5px;
   border: solid 2px;
+  border-radius: 5px;
   padding: 10px;
 }
 
@@ -53,7 +55,8 @@ ul {
   margin: 5px;
   padding: 5px;
   border: solid 2px;
-  background-color: hsl(220, 50%, 70%)
+  border-radius: 5px;
+  background-color: hsl(220, 50%, 70%);
 }
 
 .add-new-container {
@@ -73,9 +76,21 @@ ul {
   margin: 8px;
 }
 
+input {
+  border: solid 1px;
+  padding: 3px;
+  border-radius: 4px;
+}
 textarea {
   width: 100%;
-  padding: 0;
+  padding: 4px;
+  border-radius: 4px;
+}
+button {
+  padding: 8px;
+}
+button:hover, select:hover {
+  cursor: pointer;
 }
 
 a {
