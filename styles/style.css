@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Caveat&family=Courier+Prime&family=Open+Sans&family=Roboto&display=swap');
+
+* {
+  margin: 0;
+}
+
 .wrapper {
   max-width: 700px;
   margin: auto;
@@ -42,6 +48,11 @@ ul {
   list-style-type: none;
 }
 
+li {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 500;
+}
+
 .bookmark-list {
   margin: 10px;
   padding: 0;
@@ -61,8 +72,8 @@ ul {
 
 .add-new-container {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: stretch;
 }
 
 .add-new-form {
@@ -72,22 +83,32 @@ ul {
 }
 
 .text-description {
-  align-self: center;
-  margin: 8px;
+  flex: 1;
+  align-self: s;
+  padding: 8px;
 }
 
 input {
   border: solid 1px;
   padding: 3px;
   border-radius: 4px;
+  font-family: 'Roboto', sans-serif;
 }
 textarea {
-  width: 100%;
-  padding: 4px;
+  resize: none;
+  width: 240px;
+  height: 80px;
+  font-family: 'Roboto', sans-serif;
   border-radius: 4px;
 }
+
 button {
   padding: 8px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  border: solid 1px;
+  border-radius: 4px;
+  background-color: #fff;
 }
 button:hover, select:hover {
   cursor: pointer;
@@ -96,3 +117,8 @@ button:hover, select:hover {
 a {
   text-decoration: none;
 }
+
+a:link { color: black }
+a:visited { color: black; }
+a:hover { color: black; }
+a:active { color: black; }

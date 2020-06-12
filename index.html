@@ -67,7 +67,6 @@
                 <button class="vist"><a href="">Visit Site</a></button>
                 <button class="bookmark-delete">delete</button>
               </header>
-              
               <div class="bookmark-desc">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia reiciendis ea, deserunt soluta a nostrum expedita id eaque excepturi debitis!
               </div>
@@ -95,16 +94,16 @@
       <div class="add-new-container">
         <form class="add-new-form">
           <div class="title">
-            <label for="add-new-bookmark">Add New Bookmark</label>
+            <label for="add-bookmark">Add New Bookmark</label>
           </div>
           <span>
-            <input type="text" name="add-bookmark" placeholder="http://website.com" required>
+            <input type="url" name="add-bookmark" placeholder="http://website.com" required>
           </span>
           <span>
-            <input type="text" name="rating" placeholder="add rating" required>
+            <input id="js-rating" type="number" name="rating" placeholder="add rating" min="1" max="5" required>
           </span>
           <div class="text-description">
-            <textarea name="description">Enter Description here...</textarea>
+            <textarea name="description">Enter bookmark description here...</textarea>
           </div>
           <span>
             <button id="js-cancel">cancel</button>
