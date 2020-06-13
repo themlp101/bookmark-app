@@ -29,7 +29,10 @@
   display: flex;
   flex-direction: column;
 }
-
+.filterBy{
+  
+  height: 40px;
+}
 .bookmark-container {
   display: flex;
   justify-content: center;

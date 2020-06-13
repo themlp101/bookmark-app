@@ -11,12 +11,13 @@ import store from './store.js';
 
 
 const main = () => {
+  bookmarks.bindEventListeners();
   api.getBookmarks()
     .then((items) => {
       items.forEach((item) => store.addBookmark(item));
       bookmarks.renderMainPage();
     });
-  bookmarks.bindEventListeners();
+  
   
 
 };
