@@ -21,7 +21,6 @@ const findByID = (id) => {
 const findAndUpdate = (id, newData) => {
   const currentBookmark = findByID(id);
   Object.assign(currentBookmark, newData);
-
 };
 // delete bookmarks from store
 const findAndDelete = function (bookmarkId)  {
@@ -39,7 +38,7 @@ const setRatingFilter = function (rating) {
 };
 
 const filterBookmarks = function () {
-  this.bookmarks.filter(bookmark => bookmark.rating >= this.filter);
+  this.bookmarkes = this.bookmarks.filter(bookmark => bookmark.rating >= this.filter);
 };
 
 export default {

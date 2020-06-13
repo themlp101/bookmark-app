@@ -15,8 +15,8 @@ const mainPage = () => {
         <header class="bookmark-controls">
           <button id="js-add-bookmark" class="addNew">Add New Bookmark</button>
           <div class="filter-controls">
-          <label for="filter">Filter Bookmarks:</label>
           <select id="js-filter-controls" name="filter" class="filterBy">
+            <option>Filter By:
             <option id="js-all" value="0">All</option>
             <option id="js-five-up" value="5">5 Stars</option>
             <option id="js-four-up" value="4">4+ Stars</option>
