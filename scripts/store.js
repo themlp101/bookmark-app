@@ -6,7 +6,7 @@
 const bookmarks = [];
 const adding = false;
 const error = null;
-const filter = 0;
+let filter = 0;
 
 
 // Add Bookmarks to store
@@ -29,7 +29,8 @@ const findAndDelete = function (bookmarkId)  {
 
 // filter out bookmarks
 const setRatingForStore = function (ratingValue) {
-  this.filter = ratingValue;
+  console.log('hello')
+  filter = ratingValue;
 };
 
 const setRatingFilter = function (rating) {
@@ -38,7 +39,7 @@ const setRatingFilter = function (rating) {
 };
 
 const filterBookmarks = function () {
-  this.bookmarkes = this.bookmarks.filter(bookmark => bookmark.rating >= this.filter);
+  return bookmarks.filter(bookmark => bookmark.rating >= filter);
 };
 
 export default {

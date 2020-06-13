@@ -16,7 +16,7 @@ const mainPage = () => {
           <button id="js-add-bookmark" class="addNew">Add New Bookmark</button>
           <div class="filter-controls">
           <select id="js-filter-controls" name="filter" class="filterBy">
-            <option>Filter By:
+            <option>Filter By:</option>
             <option id="js-all" value="0">All</option>
             <option id="js-five-up" value="5">5 Stars</option>
             <option id="js-four-up" value="4">4+ Stars</option>
@@ -101,8 +101,7 @@ const generateBookmarkString = (bookmarkList) => {
 // Main render function
 const renderMainPage = () => {
   mainPage();
-  const bookmarks = [...store.bookmarks];
-  const bookmarksString = generateBookmarkString(bookmarks);
+  const bookmarksString = generateBookmarkString([...store.bookmarks]);
   $('#js-bookmark-list').html(bookmarksString);
 };
 
