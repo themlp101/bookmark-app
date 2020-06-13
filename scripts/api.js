@@ -43,7 +43,7 @@ const getBookmarks = () => {
   return bookmarksApiFetch(`${BASE_URL}`);
 };
 
-function serializeJson(form) {
+const serializeJson = (form) => {
   const newBookmarkForm = new FormData(form);
   const o = {};
   // Loops through the form element 'name':'value' attributes and returns an object with key value pairs
@@ -52,18 +52,26 @@ function serializeJson(form) {
   });
   return JSON.stringify(o);
   
-}
+};
 
-function createBookMark(newBookMark) {
+const createBookmark = (newBookMark) => {
   return bookmarksApiFetch(`${BASE_URL}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: newBookMark
   });
-}
+};
+
+const deleteBookmark = (bookmarkId) => {
+  return bookmarksApiFetch(`${BASE_URL}/${bookmarkId}`,
+    {
+      method: 'DELETE'
+    });
+};
 
 export default {
   getBookmarks,
-  createBookMark,
-  serializeJson
+  createBookmark,
+  serializeJson,
+  deleteBookmark
 };

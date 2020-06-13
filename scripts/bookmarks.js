@@ -14,7 +14,16 @@ const mainPage = () => {
       <div class="container">
         <header class="bookmark-controls">
           <button id="js-add-bookmark" class="addNew">Add New Bookmark</button>
-          <select class="filterBy">Filter Bookmarks</select>
+          <div class="filter-controls">
+          <label for="filter">Filter Bookmarks:</label>
+          <select id="js-filter-controls" name="filter" class="filterBy">
+            <option id="js-all" value="0">All</option>
+            <option id="js-five-up" value="5">5 Stars</option>
+            <option id="js-four-up" value="4">4+ Stars</option>
+            <option id="js-three-up" value="3">3+ Stars</option>
+            <option id="js-two-up" value="2">2+ Stars</option>
+          </select>
+          </div>
         </header>
         <div class="bookmark-container">
           <ul id="js-bookmark-list" class="bookmark-list">
@@ -61,14 +70,27 @@ const addBookmarkPage = () => {
 };
 
 const generateBookmark = (bookmark) => {
-  return `
-    <li class="bookmark-item expanded" data-item-id="${bookmark.id}>
+  if (!bookmark.expanded) {
+    return `
+    <li id="js-bookmark" class="bookmark-item " data-bookmark-id="${bookmark.id}">
       <div class="title">
           ${bookmark.title}
       </div>
-      <div class="rating">${bookmark.rating} out of 5</div>
+      <div class="rating">${bookmark.rating} out of 5 Stars</div>
     </li> 
-  `;
+  `;} else {
+    return `
+      <li id="js-bookmark" class="bookmark-item expanded" data-bookmark-id="${bookmark.id}">
+        <header class="bookmark-header">
+          <div class="title">${bookmark.title}</div>
+          <div class="rating">${bookmark.rating} out of 5</div>
+          <button id="js-visit-link" class="vist"><a href=${bookmark.url}>Visit Site</a></button>
+          <button id="js-delete" class="bookmark-delete">delete</button>
+        </header>
+        <div class="bookmark-desc">
+          ${bookmark.desc}
+        </div>`;
+  }
 };
 
 const generateBookmarkString = (bookmarkList) => {
@@ -88,7 +110,11 @@ const renderAddBookmark = () => {
   addBookmarkPage();
 };
 
+// Handle Functions
 
+/*
+* Add New Bookmark Page
+*/
 const handleAddingNewBookmark = () => {
   $('main').on('click', '#js-add-bookmark', (event) => {
     event.preventDefault();
@@ -96,27 +122,12 @@ const handleAddingNewBookmark = () => {
   });
 };
 
-const handleNewBookMarkSubmit = () => {
-  // add new bookmark page submit form
-  $('main').on('submit', '#js-add-form', (event) => {
-    event.preventDefault();
-    const newBookmark = $('#js-add-bookmark-name').val();
-    api.createItem(newBookmark)
-      .then(res => res.json())
-      .then((newBookmark) => {
-        store.addItem(newBookmark);
-        renderMainPage();
-      });
-  });
-  
-};
-
 function handleFormSubmit() {
   $('main').on('submit', '#js-add-form', event => {
     event.preventDefault();
     let formElement = $('#js-add-form')[0];
     const bookmarkJson = api.serializeJson(formElement);
-    api.createBookMark(bookmarkJson)
+    api.createBookmark(bookmarkJson)
       .then((bookmarkJson) => {
         store.addBookmark(bookmarkJson);
         renderMainPage();
@@ -131,11 +142,56 @@ const handleCancelButton = () => {
   });  
 };
 
+/*
+* Handle Toggle expanded view
+*/
+const getBookmarkId = (bookmark) => {
+  return $(bookmark).closest('#js-bookmark').data('bookmark-id');
+};
+
+const handleToggleExpandedView = () => {
+  $('main').on('click', '#js-bookmark', (event) => {
+    const bookmarkId = getBookmarkId(event.currentTarget);
+    const bookmark = store.findByID(bookmarkId);
+    store.findAndUpdate(bookmarkId, { expanded: !bookmark.expanded} );
+    renderMainPage();
+  });
+};
+
+/*
+* Handle Delete Bookmark
+*/
+const handleDeleteBookmark = () => {
+  $('main').on('click', '#js-delete', (event) => {
+    const bookmarkId = getBookmarkId(event.currentTarget);
+    api.deleteBookmark(bookmarkId)
+      .then(() => {
+        store.findAndDelete(bookmarkId);
+        renderMainPage();
+      });
+  });
+};
+
+/*
+* Handle Filter Bookmarks
+*/
+
+const handleFilterByRating = () => {
+  $('main').on('change', '#js-filter-controls', (event) => {
+    const rating = $('#js-filter-controls').val();
+    store.setRatingFilter(rating);
+    renderMainPage();
+  });
+};
+
 const bindEventListeners = () => {
   renderMainPage();
   handleAddingNewBookmark();
   handleCancelButton();
   handleFormSubmit();
+  handleToggleExpandedView();
+  handleDeleteBookmark();
+  handleFilterByRating();
 };
 
 export default {
