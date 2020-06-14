@@ -69,18 +69,18 @@ const addBookmarkPage = () => {
 </div>
   `);
 };
-
-const generateBookmark = (bookmark) => {
-  if (!bookmark.expanded) {
-    return `
-    <li id="js-bookmark" class="bookmark-item " data-bookmark-id="${bookmark.id}">
-      <div class="title">
-          ${bookmark.title}
-      </div>
-      <div class="rating">${bookmark.rating} out of 5 Stars</div>
-    </li> 
-  `;} else {
-    return `
+const normal = (bookmark) => {
+  return `
+  <li id="js-bookmark" class="bookmark-item " data-bookmark-id="${bookmark.id}">
+    <div class="title">
+        ${bookmark.title}
+    </div>
+    <div class="rating">${bookmark.rating} out of 5 Stars</div>
+  </li> 
+`;
+};
+const expanded = (bookmark) => {
+  return `
       <li id="js-bookmark" class="bookmark-item expanded" data-bookmark-id="${bookmark.id}">
         <header class="bookmark-header">
           <div class="title">${bookmark.title}</div>
@@ -94,6 +94,23 @@ const generateBookmark = (bookmark) => {
             <button id="js-delete" class="bookmark-delete">delete</button>
             <button id="js-visit-link" class="visit"><a href=${bookmark.url}>Visit Site</a></button>
         </div>`;
+};
+const hidden = (bookmark) => {
+ return  `<li id="js-bookmark" class="bookmark-item hidden" data-bookmark-id="${bookmark.id}">
+    <div class="title">
+        ${bookmark.title}
+    </div>
+    <div class="rating">${bookmark.rating} out of 5 Stars</div>
+  </li> `;
+};
+
+const generateBookmark = (bookmark) => {
+  if (bookmark.hidden) {
+    return hidden(bookmark);
+  } else if (!bookmark.expanded) {
+    return normal(bookmark);
+  } else {
+    return expanded(bookmark);
   }
 };
 
@@ -113,7 +130,6 @@ const generateError = (message) => {
 // Main render function
 const renderMainPage = () => {
   mainPage();
-  console.log([...store.bookmarks]);
   const bookmarkList = [...store.bookmarks];
   const bookmarksString = generateBookmarkString(bookmarkList);
   $('#js-bookmark-list').html(bookmarksString);
@@ -190,7 +206,6 @@ const handleToggleExpandedView = () => {
   $('main').on('click', '#js-bookmark', (event) => {
     const bookmarkId = getBookmarkId(event.currentTarget);
     const bookmark = store.findByID(bookmarkId);
-    console.log(bookmark);
     store.findAndUpdate(bookmarkId, { expanded: !bookmark.expanded });
     renderMainPage();
   });
@@ -214,6 +229,13 @@ const handleDeleteBookmark = () => {
 * Handle Filter Bookmarks
 */
 
+const getIdsFromBookmarkList = () => {
+  const array = [];
+  $('#js-bookmark-list').children().each((item, elem) => { array.push($(elem).data('bookmark-id')); 
+  });
+  return array;
+};
+
 const handleFilterByRating = () => {
   $('main').on('change', '#js-filter-controls', (event) => {
     const rating = $('#js-filter-controls').val();
@@ -235,6 +257,7 @@ const bindEventListeners = () => {
 
 export default {
   bindEventListeners,
-  renderMainPage
+  renderMainPage,
+  
 
 };
