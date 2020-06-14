@@ -21,6 +21,11 @@ body {
   align-items: center;
   margin: 10px;
 }
+.bookmark-expanded-controls {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
 .addNew {
   background-color: hsl(0, 0%, 24%);
   border: none;
@@ -194,10 +199,12 @@ button:hover, select:hover {
 
 .visit, #js-submit {
   background-color: hsl(90, 50%, 40%);
+  margin: 5px;
 }
 
 .bookmark-delete, #js-cancel {
   background-color: hsl(0, 50%, 40%);
+  margin: 5px;
 }
 
 

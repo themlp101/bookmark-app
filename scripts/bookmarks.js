@@ -85,11 +85,14 @@ const generateBookmark = (bookmark) => {
         <header class="bookmark-header">
           <div class="title">${bookmark.title}</div>
           <div class="rating">${bookmark.rating} out of 5</div>
-          <button id="js-delete" class="bookmark-delete">delete</button>
-          <button id="js-visit-link" class="visit"><a href=${bookmark.url}>Visit Site</a></button>
+          
         </header>
         <div class="bookmark-desc">
           ${bookmark.desc}
+        </div>
+        <div class="bookmark-expanded-controls">
+            <button id="js-delete" class="bookmark-delete">delete</button>
+            <button id="js-visit-link" class="visit"><a href=${bookmark.url}>Visit Site</a></button>
         </div>`;
   }
 };
