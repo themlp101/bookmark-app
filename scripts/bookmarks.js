@@ -46,15 +46,16 @@ const addBookmarkPage = () => {
         <input id="js-add-bookmark-name" type="text" name="title" placeholder="Title" required>
       </span>
       <span>
+        <div class="error-container"></div>
         <label for="add-bookmark">Enter URL here</label>
         <input id="js-add-url" type="url" name="url" placeholder="http://website.com" required>
       </span>
       <span>
         <label for="rating">Enter Rating Here</label>
-        <input id="js-add-rating" type="number" name="rating" placeholder="add rating" min="1" max="5" required>
+        <input id="js-add-rating" name="rating" placeholder="add rating" min="1" max="5" required />
       </span>
       <div class="text-description">
-        <textarea id="js-add-desc" name="desc">Enter bookmark description here...</textarea>
+        <textarea id="js-add-desc" name="desc" value="value" placeholder="Enter bookmark description here..." required ></textarea>
       </div>
       <span>
         <button id="js-cancel">cancel</button>
@@ -84,7 +85,7 @@ const generateBookmark = (bookmark) => {
         <header class="bookmark-header">
           <div class="title">${bookmark.title}</div>
           <div class="rating">${bookmark.rating} out of 5</div>
-          <button id="js-visit-link" class="vist"><a href=${bookmark.url}>Visit Site</a></button>
+          <button id="js-visit-link" class="visit"><a href=${bookmark.url}>Visit Site</a></button>
           <button id="js-delete" class="bookmark-delete">delete</button>
         </header>
         <div class="bookmark-desc">
@@ -98,6 +99,14 @@ const generateBookmarkString = (bookmarkList) => {
   return bookmarks.join('');
 };
 
+const generateError = (message) => {
+  return `
+    <span class="erro-content">
+      <button id="cancel-error">X</button>
+      ${message}
+      </span>`;
+};
+
 // Main render function
 const renderMainPage = () => {
   mainPage();
@@ -109,7 +118,25 @@ const renderAddBookmark = () => {
   addBookmarkPage();
 };
 
+const renderError = function () {
+  if (store.error) {
+    const error = generateError(store.error);
+    $('.error-container').html(error);
+  } else {
+    $('.error-container').empty();
+  }
+};
+
+
 // Handle Functions
+
+const handleCloseError = () => {
+  $('main').on('click', '#cancel-error', () => {
+    store.setError(null);
+    renderError();
+  });
+};
+
 
 /*
 * Add New Bookmark Page
@@ -130,6 +157,11 @@ function handleFormSubmit() {
       .then((bookmarkJson) => {
         store.addBookmark(bookmarkJson);
         renderMainPage();
+      })
+      .catch((error) => {
+        console.log(error);
+        store.setError(error.message);
+        renderError();
       });
   });
 }
@@ -177,6 +209,7 @@ const handleDeleteBookmark = () => {
 
 const handleFilterByRating = () => {
   $('main').on('change', '#js-filter-controls', (event) => {
+    event.preventDefault();
     const rating = $('#js-filter-controls').val();
     store.setRatingFilter(rating);
     renderMainPage();
@@ -191,6 +224,7 @@ const bindEventListeners = () => {
   handleToggleExpandedView();
   handleDeleteBookmark();
   handleFilterByRating();
+  handleCloseError();
 };
 
 export default {

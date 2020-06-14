@@ -1,17 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Caveat&family=Courier+Prime&family=Open+Sans&family=Roboto&display=swap');
 
-* {
-  margin: 0;
+
+body {
+  background-color: hsl(0, 0%, 4%);
 }
+
 
 .wrapper {
   max-width: 700px;
   margin: auto;
   margin-top: 10px;
   margin-bottom: 10px;
-  border: solid 2px;
   border-radius: 5px;
-  background-color: hsl(220, 20%, 70%);
+  background-color: hsl(0, 0%, 12%);
 }
 
 .bookmark-controls {
@@ -20,9 +21,15 @@
   align-items: center;
   margin: 10px;
 }
+.addNew {
+  background-color: hsl(0, 0%, 24%);
+  border: none;
+}
 
 .addNew, .filter-controls {
   margin: 5px;
+  font-family: 'Roboto', sans-serif;
+  color: hsl(0, 100%, 100%);
 }
 
 .filter-controls {
@@ -30,9 +37,9 @@
   flex-direction: column;
 }
 .filterBy{
-  
   height: 40px;
 }
+
 .bookmark-container {
   display: flex;
   justify-content: center;
@@ -43,9 +50,14 @@
   justify-content: space-around;
   text-align: center;
   margin: 5px;
-  border: solid 2px;
   border-radius: 5px;
   padding: 10px;
+  background-color: hsl(0, 0%, 18%);
+  box-shadow: 0 8px 6px -8px black;
+}
+
+.bookmark-desc {
+  color: hsl(0, 100%, 100%);
 }
 
 .expanded {
@@ -55,6 +67,7 @@
 
 .title, .rating {
   margin: 5px;
+  color: hsl(0, 100%, 100%);
 }
 
 ul {
@@ -78,9 +91,8 @@ li {
   align-items: baseline;
   margin: 5px;
   padding: 5px;
-  border: solid 2px;
   border-radius: 5px;
-  background-color: hsl(220, 50%, 70%);
+  background-color: hsl(0, 0%, 18%);
 }
 
 .add-new-container {
@@ -92,29 +104,44 @@ li {
 .add-new-form {
   align-self: center;
   text-align: center;
-  padding: 10px;
+  padding: 10px; 
 }
 
 .text-description {
   padding: 8px;
 }
+label {
+  font-family: 'Roboto', sans-serif;
+  color: hsl(0, 100%, 100%);
+}
 
 input {
-  border: solid 1px;
   padding: 3px;
   border-radius: 4px;
+  border: none;
   font-family: 'Roboto', sans-serif;
+  color: hsl(0, 100%, 100%);
+  background-color: hsl(0, 0%, 24%);
+  box-shadow: 0 8px 6px -7px hsl(0, 0%, 0%);
 }
+
 textarea {
   resize: none;
   width: 240px;
   height: 80px;
   font-family: 'Roboto', sans-serif;
+  font-size: 0.8em;
+  color: hsl(0, 100%, 100%);
   border-radius: 4px;
+  border: none;
+  background-color: hsl(0, 0%, 24%);
+  box-shadow: 0 8px 6px -7px hsl(0, 0%, 0%);
 }
 
 h2 {
   font-family: 'Roboto', sans-serif;
+  color: hsl(0, 100%, 100%);
+  font-weight: 400;
 }
 
 label {
@@ -124,30 +151,75 @@ label {
   padding: 4px;
 }
 
+select, option {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  background-color: hsl(0, 0%, 24%);
+  color: hsl(0, 100%, 100%);
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 8px 6px -7px hsl(0, 0%, 0%);
+}
+
+
 button {
   padding: 8px;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
-  border: solid 1px;
+  font-size: 0.8em;
+  border: none;
   border-radius: 4px;
-  background-color: #fff;
+  background-color: hsl(0, 0%, 24%);
+  color: hsl(0, 100%, 100%);
+  box-shadow: 0 8px 6px -6px hsl(0, 0%, 0%);
 }
+
+#js-add-rating {
+  background-color: hsl(0, 0%, 24%);
+  max-width: 107px;
+}
+
+
 button:hover, select:hover {
   cursor: pointer;
 }
 
-a {
-  text-decoration: none;
+.error-container {
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  
+}
+#cancel-error {
+  background-color: hsl(0, 60%, 40%);
 }
 
-a:link { color: black }
-a:visited { color: black; }
-a:hover { color: black; }
-a:active { color: black; }
+.visit, #js-submit {
+  background-color: hsl(90, 50%, 40%);
+}
+
+.bookmark-delete, #js-cancel {
+  background-color: hsl(0, 50%, 40%);
+}
+
+
+
+
+a {
+  text-decoration: none;
+  color: hsl(0, 100%, 100%)
+}
+a:link {color: hsl(0, 100%, 100%) }
+a:visited { color: hsl(0, 100%, 100%) }
+a:hover { color: hsl(0, 100%, 100%) }
+a:active { color: hsl(0, 100%, 100%) }
 
 @media all and (min-width: 600px) {
   .bookmark-item {
     flex-direction: row;
-    
   } 
+
+  main {
+    margin: 200px 0;
+  }
+  
 }

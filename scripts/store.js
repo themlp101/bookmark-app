@@ -42,6 +42,10 @@ const filterBookmarks = function () {
   return bookmarks.filter(bookmark => bookmark.rating >= filter);
 };
 
+const setError = function (error) {
+  this.error = error;
+};
+
 export default {
   bookmarks,
   adding,
@@ -51,5 +55,6 @@ export default {
   findByID,
   findAndUpdate,
   findAndDelete,
-  setRatingFilter
+  setRatingFilter,
+  setError
 };
