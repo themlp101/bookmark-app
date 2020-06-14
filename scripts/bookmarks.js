@@ -85,8 +85,8 @@ const generateBookmark = (bookmark) => {
         <header class="bookmark-header">
           <div class="title">${bookmark.title}</div>
           <div class="rating">${bookmark.rating} out of 5</div>
-          <button id="js-visit-link" class="visit"><a href=${bookmark.url}>Visit Site</a></button>
           <button id="js-delete" class="bookmark-delete">delete</button>
+          <button id="js-visit-link" class="visit"><a href=${bookmark.url}>Visit Site</a></button>
         </header>
         <div class="bookmark-desc">
           ${bookmark.desc}
@@ -110,7 +110,8 @@ const generateError = (message) => {
 // Main render function
 const renderMainPage = () => {
   mainPage();
-  const bookmarksString = generateBookmarkString([...store.bookmarks]);
+  const bookmarkList = [...store.bookmarks];
+  const bookmarksString = generateBookmarkString(bookmarkList);
   $('#js-bookmark-list').html(bookmarksString);
 };
 
@@ -184,7 +185,7 @@ const handleToggleExpandedView = () => {
   $('main').on('click', '#js-bookmark', (event) => {
     const bookmarkId = getBookmarkId(event.currentTarget);
     const bookmark = store.findByID(bookmarkId);
-    store.findAndUpdate(bookmarkId, { expanded: !bookmark.expanded} );
+    store.findAndUpdate(bookmarkId, { expanded: !bookmark.expanded });
     renderMainPage();
   });
 };
