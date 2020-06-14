@@ -11,7 +11,9 @@ let filter = 0;
 
 // Add Bookmarks to store
 const addBookmark = function (newBookmark) {
-  this.bookmarks.push(newBookmark);
+  bookmarks.push(newBookmark);
+  filter = 0;
+  filterBookmarks();
 };
 // Find bookmark by ID
 const findByID = (id) => {
@@ -24,7 +26,7 @@ const findAndUpdate = (id, newData) => {
 };
 // delete bookmarks from store
 const findAndDelete = function (bookmarkId)  {
-  this.bookmarks = this.bookmarks.filter(currentBookmark => currentBookmark.id !== bookmarkId);
+  this.bookmarks = this. bookmarks.filter(currentBookmark => currentBookmark.id !== bookmarkId);
 };
 
 // filter out bookmarks
@@ -39,6 +41,8 @@ const setRatingFilter = function (rating) {
 };
 
 const filterBookmarks = function () {
+  console.log(bookmarks)
+  console.log(bookmarks.filter(bookmark => bookmark.rating >= filter));
   return bookmarks.filter(bookmark => bookmark.rating >= filter);
 };
 

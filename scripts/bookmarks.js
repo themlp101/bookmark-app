@@ -16,12 +16,12 @@ const mainPage = () => {
           <button id="js-add-bookmark" class="addNew">Add New Bookmark</button>
           <div class="filter-controls">
           <select id="js-filter-controls" name="filter" class="filterBy">
-            <option>Filter By:</option>
-            <option id="js-all" value="0">All</option>
-            <option id="js-five-up" value="5">5 Stars</option>
-            <option id="js-four-up" value="4">4+ Stars</option>
-            <option id="js-three-up" value="3">3+ Stars</option>
-            <option id="js-two-up" value="2">2+ Stars</option>
+            <option value="0">Filter By:</option>
+            <option value="0">All</option>
+            <option value="5">5 Stars</option>
+            <option value="4">4+ Stars</option>
+            <option value="3">3+ Stars</option>
+            <option value="2">2+ Stars</option>
           </select>
           </div>
         </header>
@@ -110,6 +110,7 @@ const generateError = (message) => {
 // Main render function
 const renderMainPage = () => {
   mainPage();
+  console.log([...store.bookmarks]);
   const bookmarkList = [...store.bookmarks];
   const bookmarksString = generateBookmarkString(bookmarkList);
   $('#js-bookmark-list').html(bookmarksString);
@@ -157,6 +158,7 @@ function handleFormSubmit() {
     api.createBookmark(bookmarkJson)
       .then((bookmarkJson) => {
         store.addBookmark(bookmarkJson);
+        api.getBookmarks();
         renderMainPage();
       })
       .catch((error) => {
@@ -185,6 +187,7 @@ const handleToggleExpandedView = () => {
   $('main').on('click', '#js-bookmark', (event) => {
     const bookmarkId = getBookmarkId(event.currentTarget);
     const bookmark = store.findByID(bookmarkId);
+    console.log(bookmark);
     store.findAndUpdate(bookmarkId, { expanded: !bookmark.expanded });
     renderMainPage();
   });
@@ -210,7 +213,6 @@ const handleDeleteBookmark = () => {
 
 const handleFilterByRating = () => {
   $('main').on('change', '#js-filter-controls', (event) => {
-    event.preventDefault();
     const rating = $('#js-filter-controls').val();
     store.setRatingFilter(rating);
     renderMainPage();
