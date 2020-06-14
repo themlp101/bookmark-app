@@ -52,7 +52,7 @@ const addBookmarkPage = () => {
       </span>
       <span>
         <label for="rating">Enter Rating Here</label>
-        <input id="js-add-rating" name="rating" placeholder="add rating" min="1" max="5" required />
+        <input id="js-add-rating" type="number" name="rating" min="1" max="5" required />
       </span>
       <div class="text-description">
         <textarea id="js-add-desc" name="desc" value="value" placeholder="Enter bookmark description here..." required ></textarea>
