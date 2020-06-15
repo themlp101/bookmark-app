@@ -1,11 +1,10 @@
-/*
-* API functions
-*/
+/**
+ * API call functions
+ */
 
-/* 
-* Base URL Functions
-*/
-
+/**
+ * BASE URL
+ */
 const BASE_URL = 'https://thinkful-list-api.herokuapp.com/mattp/bookmarks';
 
 /**
@@ -38,11 +37,17 @@ function bookmarksApiFetch(...args) {
       return data;
     });
 }
-
+/**
+ * Returns api call
+ */
 const getBookmarks = () => {
   return bookmarksApiFetch(`${BASE_URL}`);
 };
 
+/**
+ * Creates a JSON object from the name and value attributes of the passed in form element
+ * @param {Element} form 
+ */
 const serializeJson = (form) => {
   const newBookmarkForm = new FormData(form);
   const o = {};
@@ -54,6 +59,10 @@ const serializeJson = (form) => {
   
 };
 
+/**
+ * Makes a POST call adding the boomark to the server
+ * @param {Object} newBookMark 
+ */
 const createBookmark = (newBookMark) => {
   return bookmarksApiFetch(`${BASE_URL}`, {
     method: 'POST',
@@ -62,6 +71,10 @@ const createBookmark = (newBookMark) => {
   });
 };
 
+/**
+ * Makes a DELETE call using the id passed in
+ * @param {string} bookmarkId 
+ */
 const deleteBookmark = (bookmarkId) => {
   return bookmarksApiFetch(`${BASE_URL}/${bookmarkId}`,
     {

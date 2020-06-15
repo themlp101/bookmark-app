@@ -7,7 +7,19 @@
 import store from './store.js';
 import api from './api.js';
 
-// template functions
+/**
+ * 
+ * 
+ * 
+ * 
+ * Template Render Functions
+ * 
+ * 
+ * 
+ */
+/**
+ * Main Page
+ */
 const mainPage = () => {
   return $('main').html(`
   <div class="wrapper">
@@ -32,7 +44,9 @@ const mainPage = () => {
       </div>
     </div>`);
 };
-
+/**
+ * Add bookmark page template
+ */
 const addBookmarkPage = () => {
   return $('main').html(`
   <div class="wrapper">
@@ -46,7 +60,7 @@ const addBookmarkPage = () => {
         <input id="js-add-bookmark-name" type="text" name="title" placeholder="Title" required>
       </span>
       <span>
-        <div class="error-container"></div>
+        <div id="error-container"></div>
         <label for="add-bookmark">Enter URL here</label>
         <input id="js-add-url" type="url" name="url" placeholder="http://website.com" required>
       </span>
@@ -69,6 +83,10 @@ const addBookmarkPage = () => {
 </div>
   `);
 };
+/**
+ * Renders normal state for bookmark
+ * @param {object} bookmark 
+ */
 const normal = (bookmark) => {
   return `
   <li id="js-bookmark" class="bookmark-item " data-bookmark-id="${bookmark.id}">
@@ -79,6 +97,10 @@ const normal = (bookmark) => {
   </li> 
 `;
 };
+/**
+ * Renders expanded state for the bookmark
+ * @param {object} bookmark 
+ */
 const expanded = (bookmark) => {
   return `
       <li id="js-bookmark" class="bookmark-item expanded" data-bookmark-id="${bookmark.id}">
@@ -95,6 +117,10 @@ const expanded = (bookmark) => {
             <button id="js-visit-link" class="visit"><a href=${bookmark.url}>Visit Site</a></button>
         </div>`;
 };
+/**
+ * Renders hidden state for the bookmark
+ * @param {object} bookmark 
+ */
 const hidden = (bookmark) => {
  return  `<li id="js-bookmark" class="bookmark-item hidden" data-bookmark-id="${bookmark.id}">
     <div class="title">
@@ -103,7 +129,10 @@ const hidden = (bookmark) => {
     <div class="rating">${bookmark.rating} out of 5 Stars</div>
   </li> `;
 };
-
+/**
+ * Conditional function that determines render state for the bookmark
+ * @param {object} bookmark 
+ */
 const generateBookmark = (bookmark) => {
   if (bookmark.hidden) {
     return hidden(bookmark);
@@ -114,11 +143,18 @@ const generateBookmark = (bookmark) => {
   }
 };
 
+/**
+ * Generates a string from the passed in array
+ * @param {array} bookmarkList 
+ */
 const generateBookmarkString = (bookmarkList) => {
   const bookmarks = bookmarkList.map(bookmark => generateBookmark(bookmark));
   return bookmarks.join('');
 };
-
+/**
+ * Template for the error box
+ * @param {string} message 
+ */
 const generateError = (message) => {
   return `
     <span class="erro-content">
@@ -126,32 +162,37 @@ const generateError = (message) => {
       ${message}
       </span>`;
 };
-
-// Main render function
+/**
+ * 
+ * Main render function
+ * 
+ */
 const renderMainPage = () => {
   mainPage();
-  const bookmarkList = store.bookmarks;
-  console.log('bookmarkList', bookmarkList)
+  const bookmarkList = store.getBookmarks();
   const bookmarksString = generateBookmarkString(bookmarkList);
   $('#js-bookmark-list').html(bookmarksString);
 };
-
+/**
+ * Retrieves template for the add bookmark page
+ */
 const renderAddBookmark = () => {
   addBookmarkPage();
 };
 
-const renderError = function () {
-  if (store.error) {
-    const error = generateError(store.error);
-    $('.error-container').html(error);
-  } else {
-    $('.error-container').empty();
-  }
-};
 
+/**
+ * 
+ * 
+ * Handler Functions
+ * 
+ * 
+ * 
+ */
 
-// Handle Functions
-
+/**
+ * Handles close functionality on the add bookmark page
+ */
 const handleCloseError = () => {
   $('main').on('click', '#cancel-error', () => {
     store.setError(null);
@@ -159,18 +200,21 @@ const handleCloseError = () => {
   });
 };
 
-
-/*
-* Add New Bookmark Page
-*/
+/**
+ * Handles action to render the add bookmark page
+ */
 const handleAddingNewBookmark = () => {
   $('main').on('click', '#js-add-bookmark', (event) => {
     event.preventDefault();
     renderAddBookmark();
   });
 };
-
-function handleFormSubmit() {
+/**
+ * Handles submit button on add bookmark page
+ * Makes a call to the api 
+ * Converts the object and POSTS to the api and store array
+ */
+const handleFormSubmit= () => {
   $('main').on('submit', '#js-add-form', event => {
     event.preventDefault();
     let formElement = $('#js-add-form')[0];
@@ -182,13 +226,27 @@ function handleFormSubmit() {
         renderMainPage();
       })
       .catch((error) => {
-        console.log(error);
         store.setError(error.message);
         renderError();
       });
   });
-}
+};
+/**
+ * Renders the error above the html-url input container
+ */
+const renderError = function () {
+  const errorMessage = store.getErrorMessage()
+  if (errorMessage) {
+    const error = generateError(errorMessage);
+    $('#error-container').html(error);
+  } else {
+    $('#error-container').empty();
+  }
+};
 
+/**
+ * Handles cancel button on the add bookmark page
+ */
 const handleCancelButton = () => {
   $('main').on('click', '#js-cancel', (event) => {
     event.preventDefault();
@@ -196,19 +254,22 @@ const handleCancelButton = () => {
   });  
 };
 
-/*
-* Handle Toggle expanded view
-*/
+/**
+ * Finds the closet list item's id
+ * @param {element} bookmark 
+ */
 const getBookmarkId = (bookmark) => {
   return $(bookmark).closest('#js-bookmark').data('bookmark-id');
 };
-
+/**
+ * Handles the toggled expanded view for the booksmarks
+ * Retrieves the id from the currently clicked bookmark and updates the object in the bookmarks array
+ * Re-renders the page with the appropraite styling for the current bookmark
+ */
 const handleToggleExpandedView = () => {
   $('main').on('click', '#js-bookmark', (event) => {
     const bookmarkId = $(event.currentTarget).data('bookmark-id');
-    console.log("bookmarkId", bookmarkId)
     const bookmark = store.findByID(bookmarkId);
-    console.log("bookmark",bookmark)
     if(bookmark){
       store.findAndUpdate(bookmarkId, { expanded: !bookmark.expanded });
     }
@@ -216,9 +277,11 @@ const handleToggleExpandedView = () => {
   });
 };
 
-/*
-* Handle Delete Bookmark
-*/
+/**
+ * Handles the deletion of the bookmarks
+ * Retrieves the clicked specific bookmark's id
+ * Makes a DELETE call to the api and deletes the bookmark from the bookmarks array in store
+ */
 const handleDeleteBookmark = () => {
   $('main').on('click', '#js-delete', (event) => {
     const bookmarkId = getBookmarkId(event.currentTarget);
@@ -230,17 +293,11 @@ const handleDeleteBookmark = () => {
   });
 };
 
-/*
-* Handle Filter Bookmarks
-*/
-
-const getIdsFromBookmarkList = () => {
-  const array = [];
-  $('#js-bookmark-list').children().each((item, elem) => { array.push($(elem).data('bookmark-id')); 
-  });
-  return array;
-};
-
+/**
+ * Handles the filter feature
+ * Retrieves the rating passed in by the user and toggles the hidden *property per bookmark based on rating
+ * Re-renders the page with appropriate hidden styling for the filtered bookmarks
+ */
 const handleFilterByRating = () => {
   $('main').on('change', '#js-filter-controls', (event) => {
     const rating = $('#js-filter-controls').val();
@@ -249,6 +306,9 @@ const handleFilterByRating = () => {
   });
 };
 
+/**
+ * Binding all event listeners and handle functions
+ */
 const bindEventListeners = () => {
   renderMainPage();
   handleAddingNewBookmark();
@@ -263,6 +323,4 @@ const bindEventListeners = () => {
 export default {
   bindEventListeners,
   renderMainPage,
-  
-
 };
