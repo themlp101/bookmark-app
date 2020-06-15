@@ -15,10 +15,7 @@ const main = () => {
   api.getBookmarks()
     .then((items) => {
       items.forEach((item) => store.addBookmark(item));
-      bookmarks.renderMainPage();
-    });
-  
-  
+    }).then(() => bookmarks.renderMainPage());  
 
 };
 

@@ -3,45 +3,42 @@
 *
 */
 
-const bookmarks = [];
-const adding = false;
-const error = null;
+let bookmarks = [];
+let adding = false;
+let error = null;
 let filter = 0;
-// hidden = false;
+
 
 // Add Bookmarks to store
-const addBookmark = function (newBookmark) {
+const addBookmark =  (newBookmark)  => {
   bookmarks.push(newBookmark);  
 };
 // Find bookmark by ID
 const findByID = (id) => {
   return bookmarks.find(currentBookmark => currentBookmark.id === id);
-  // console.log(bookmarks.find(currentBookmark => currentBookmark.id === id));
-};
+}
 // updating status of bookmarks in store
 const findAndUpdate = (id, newData) => {
   const currentBookmark = findByID(id);
   Object.assign(currentBookmark, newData);
-};
+}
 
 // delete bookmarks from store
-const findAndDelete = function (bookmarkId)  {
-  this.bookmarks = this.bookmarks.filter(currentBookmark => currentBookmark.id !== bookmarkId);
-  console.log(this.bookmarks)
+const findAndDelete =  (bookmarkId)  => {
+  bookmarks = bookmarks.filter(currentBookmark => currentBookmark.id !== bookmarkId);
 };
 
 // filter out bookmarks
-const setRatingForStore = function (ratingValue) {
+const setRatingForStore =  (ratingValue)  => {
   filter = ratingValue;
-  console.log(filter);
 };
 
-const setRatingFilter = function (rating) {
+const setRatingFilter =  (rating)  => {
   setRatingForStore(rating);
   filterBookmarks();
 };
 
-const filterBookmarks = function () {
+const filterBookmarks =  ()=> {
   bookmarks.forEach((bookmark) => {
     if (bookmark.rating >= filter) {
       Object.assign(bookmark, { hidden: false });
@@ -55,8 +52,8 @@ const filterBookmarks = function () {
 // get id from array if rating is less than value
 // object assign 
 
-const setError = function (error) {
-  this.error = error;
+const setError =  (err)=> {
+  error = err;
 };
 
 export default {

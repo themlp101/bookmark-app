@@ -130,7 +130,8 @@ const generateError = (message) => {
 // Main render function
 const renderMainPage = () => {
   mainPage();
-  const bookmarkList = [...store.bookmarks];
+  const bookmarkList = store.bookmarks;
+  console.log('bookmarkList', bookmarkList)
   const bookmarksString = generateBookmarkString(bookmarkList);
   $('#js-bookmark-list').html(bookmarksString);
 };
@@ -204,9 +205,13 @@ const getBookmarkId = (bookmark) => {
 
 const handleToggleExpandedView = () => {
   $('main').on('click', '#js-bookmark', (event) => {
-    const bookmarkId = getBookmarkId(event.currentTarget);
+    const bookmarkId = $(event.currentTarget).data('bookmark-id');
+    console.log("bookmarkId", bookmarkId)
     const bookmark = store.findByID(bookmarkId);
-    store.findAndUpdate(bookmarkId, { expanded: !bookmark.expanded });
+    console.log("bookmark",bookmark)
+    if(bookmark){
+      store.findAndUpdate(bookmarkId, { expanded: !bookmark.expanded });
+    }
     renderMainPage();
   });
 };

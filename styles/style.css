@@ -92,7 +92,7 @@ li {
 
 .bookmark-header {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: baseline;
   margin: 5px;
   padding: 5px;
