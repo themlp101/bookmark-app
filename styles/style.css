@@ -71,6 +71,7 @@ body {
 }
 
 .title, .rating {
+  flex: 1;
   margin: 5px;
   color: hsl(0, 100%, 100%);
 }
