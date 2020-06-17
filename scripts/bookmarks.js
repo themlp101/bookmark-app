@@ -24,10 +24,9 @@ const mainPage = () => {
   <div class="wrapper">
       <div class="container">
         <header class="bookmark-controls">
-        
           <button id="js-add-bookmark" class="addNew">Add New Bookmark</button>
-          <h3>Bookmarks App</h3>
           <div class="filter-controls">
+          <form class="controls-form">
           <label for="filter">
           Filter:
           </label>
@@ -39,6 +38,7 @@ const mainPage = () => {
             <option value="3">3+ Stars</option>
             <option value="2">2+ Stars</option>
           </select>
+          </form>
           </div>
         </header>
         <div class="bookmark-container">
