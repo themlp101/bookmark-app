@@ -27,16 +27,16 @@ const mainPage = () => {
           <button id="js-add-bookmark" class="addNew">Add New Bookmark</button>
           <div class="filter-controls">
           <form class="controls-form">
-          <label for="filter">
+          <label class="hidden" for="filter">
           Filter:
           </label>
           <select id="js-filter-controls" name="filter" class="filterBy">
-            <option value="0">Filter By:</option>
-            <option value="0">All</option>
-            <option value="5">5 Stars</option>
-            <option value="4">4+ Stars</option>
-            <option value="3">3+ Stars</option>
-            <option value="2">2+ Stars</option>
+            <option label="Filter By:" disabled selected >Filter By:</option>
+            <option label="all" value="0">All</option>
+            <option label="5 Stars" value="5">5 Stars</option>
+            <option label="4+ Stars" value="4">4+ Stars</option>
+            <option label="3+ Stars" value="3">3+ Stars</option>
+            <option label="2+ stars" value="2">2+ Stars</option>
           </select>
           </form>
           </div>
@@ -58,20 +58,20 @@ const addBookmarkPage = () => {
     <form id="js-add-form" name="add-form" class="add-new-form">
     <h2 class="title">Add New Bookmark<h2>
       <span>
-        <label for="title">Enter Title Here</label>
+        <label for="js-add-bookmark-name">Enter Title Here</label>
         <input id="js-add-bookmark-name" type="text" name="title" placeholder="Title" required>
       </span>
       <span>
         <div id="error-container"></div>
-        <label for="url">Enter URL here</label>
+        <label for="js-add-url">Enter URL here</label>
         <input id="js-add-url" type="url" name="url" placeholder="http://website.com" required>
       </span>
       <span>
-        <label for="rating">Enter Rating Here</label>
+        <label for="js-add-rating">Enter Rating Here</label>
         <input id="js-add-rating" type="number" name="rating" min="1" max="5" required />
       </span>
       <div class="text-description">
-      <label for="desc">Enter bookmark description:</label>
+      <label for="js-add-desc">Enter bookmark description:</label>
         <textarea id="js-add-desc" name="desc" value="value" placeholder="Enter bookmark description here..." required ></textarea>
       </div>
       <span>
