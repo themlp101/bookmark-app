@@ -27,7 +27,7 @@ const mainPage = () => {
           <button id="js-add-bookmark" class="addNew">Add New Bookmark</button>
           <div class="filter-controls">
           <form class="controls-form">
-          <label class="hidden" for="filter">
+          <label class="hidden" for="js-filter-controls">
           Filter:
           </label>
           <select id="js-filter-controls" name="filter" class="filterBy">
