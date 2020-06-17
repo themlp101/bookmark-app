@@ -1,234 +1,242 @@
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Caveat&family=Courier+Prime&family=Open+Sans&family=Roboto&display=swap');
 
-
 body {
-  background-color: hsl(0, 0%, 4%);
+	background-color: hsl(0, 0%, 4%);
 }
 
-
 .wrapper {
-  max-width: 700px;
-  margin: auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  background-color: hsl(0, 0%, 12%);
+	max-width: 700px;
+	margin: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	background-color: hsl(0, 0%, 12%);
 }
 
 .bookmark-controls {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin: 10px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin: 10px;
 }
 .bookmark-expanded-controls {
-  display: flex;
-  justify-content: center;
-  margin: 10px;
+	display: flex;
+	justify-content: center;
+	margin: 10px;
 }
 .addNew {
-  background-color: hsl(0, 0%, 24%);
-  border: none;
+	background-color: hsl(0, 0%, 24%);
+	border: none;
 }
 
-.addNew, .filter-controls {
-  margin: 5px;
-  font-family: 'Roboto', sans-serif;
-  color: hsl(0, 100%, 100%);
+.addNew,
+.filter-controls {
+	margin: 5px;
+	font-family: 'Roboto', sans-serif;
+	color: hsl(0, 100%, 100%);
 }
 
 .filter-controls {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
-.filterBy{
-  height: 40px;
+.filterBy {
+	height: 40px;
 }
 
 .bookmark-container {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 .bookmark-item {
-  display: flex;
-  justify-content: space-around;
-  text-align: center;
-  margin: 5px;
-  border-radius: 5px;
-  padding: 10px;
-  background-color: hsl(0, 0%, 18%);
-  box-shadow: 0 8px 6px -8px black;
+	display: flex;
+	justify-content: space-around;
+	text-align: center;
+	margin: 5px;
+	border-radius: 5px;
+	padding: 10px;
+	background-color: hsl(0, 0%, 18%);
+	box-shadow: 0 8px 6px -8px black;
 }
 
 .bookmark-desc {
-  color: hsl(0, 100%, 100%);
+	color: hsl(0, 100%, 100%);
 }
 
 .expanded {
-  display: block;
-  justify-content: space-between;
+	display: block;
+	justify-content: space-between;
 }
 
-.title, .rating {
-  flex: 1;
-  margin: 5px;
-  color: hsl(0, 100%, 100%);
+.title,
+.rating {
+	flex: 1;
+	margin: 5px;
+	color: hsl(0, 100%, 100%);
 }
 
 ul {
-  list-style-type: none;
+	list-style-type: none;
 }
 
 li {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 500;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 500;
 }
 
 .bookmark-list {
-  margin: 10px;
-  padding: 0;
-  width: 100%;
+	margin: 10px;
+	padding: 0;
+	width: 100%;
 }
 
 .bookmark-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin: 5px;
-  padding: 5px;
-  border-radius: 5px;
-  background-color: hsl(0, 0%, 18%);
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	margin: 5px;
+	padding: 5px;
+	border-radius: 5px;
+	background-color: hsl(0, 0%, 18%);
 }
 
 .add-new-container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
 }
 
 .add-new-form {
-  align-self: center;
-  text-align: center;
-  padding: 10px; 
+	align-self: center;
+	text-align: center;
+	padding: 10px;
 }
 
 .text-description {
-  padding: 8px;
+	padding: 8px;
 }
 label {
-  font-family: 'Roboto', sans-serif;
-  color: hsl(0, 100%, 100%);
+	font-family: 'Roboto', sans-serif;
+	color: hsl(0, 100%, 100%);
 }
 
 input {
-  padding: 3px;
-  border-radius: 4px;
-  border: none;
-  font-family: 'Roboto', sans-serif;
-  color: hsl(0, 100%, 100%);
-  background-color: hsl(0, 0%, 24%);
-  box-shadow: 0 8px 6px -7px hsl(0, 0%, 0%);
+	padding: 3px;
+	border-radius: 4px;
+	border: none;
+	font-family: 'Roboto', sans-serif;
+	color: hsl(0, 100%, 100%);
+	background-color: hsl(0, 0%, 24%);
+	box-shadow: 0 8px 6px -7px hsl(0, 0%, 0%);
 }
 
 textarea {
-  resize: none;
-  width: 240px;
-  height: 80px;
-  font-family: 'Roboto', sans-serif;
-  font-size: 0.8em;
-  color: hsl(0, 100%, 100%);
-  border-radius: 4px;
-  border: none;
-  background-color: hsl(0, 0%, 24%);
-  box-shadow: 0 8px 6px -7px hsl(0, 0%, 0%);
+	resize: none;
+	width: 240px;
+	height: 80px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 0.8em;
+	color: hsl(0, 100%, 100%);
+	border-radius: 4px;
+	border: none;
+	background-color: hsl(0, 0%, 24%);
+	box-shadow: 0 8px 6px -7px hsl(0, 0%, 0%);
 }
 
-h2 {
-  font-family: 'Roboto', sans-serif;
-  color: hsl(0, 100%, 100%);
-  font-weight: 400;
+h2,
+h3 {
+	font-family: 'Roboto', sans-serif;
+	color: hsl(0, 100%, 100%);
+	font-weight: 400;
 }
 
 label {
-  font-weight: 400;
-  font-size: 15px;
-  display: block;
-  padding: 4px;
+	font-weight: 400;
+	font-size: 15px;
+	display: block;
+	padding: 4px;
 }
 
-select, option {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 500;
-  background-color: hsl(0, 0%, 24%);
-  color: hsl(0, 100%, 100%);
-  border: none;
-  border-radius: 6px;
-  box-shadow: 0 8px 6px -7px hsl(0, 0%, 0%);
+select,
+option {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 500;
+	background-color: hsl(0, 0%, 24%);
+	color: hsl(0, 100%, 100%);
+	border: none;
+	border-radius: 6px;
+	box-shadow: 0 8px 6px -7px hsl(0, 0%, 0%);
 }
-
 
 button {
-  padding: 8px;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 500;
-  font-size: 0.8em;
-  border: none;
-  border-radius: 4px;
-  background-color: hsl(0, 0%, 24%);
-  color: hsl(0, 100%, 100%);
-  box-shadow: 0 8px 6px -6px hsl(0, 0%, 0%);
+	padding: 8px;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 500;
+	font-size: 0.8em;
+	border: none;
+	border-radius: 4px;
+	background-color: hsl(0, 0%, 24%);
+	color: hsl(0, 100%, 100%);
+	box-shadow: 0 8px 6px -6px hsl(0, 0%, 0%);
 }
 
 #js-add-rating {
-  background-color: hsl(0, 0%, 24%);
+	background-color: hsl(0, 0%, 24%);
 }
 
-
-button:hover, select:hover {
-  cursor: pointer;
+button:hover,
+select:hover {
+	cursor: pointer;
 }
 
 .error-container {
-  font-size: 16px;
-  font-family: 'Roboto', sans-serif;
-  
+	font-size: 16px;
+	font-family: 'Roboto', sans-serif;
 }
 #cancel-error {
-  background-color: hsl(0, 60%, 40%);
+	background-color: hsl(0, 60%, 40%);
 }
 
-.visit, #js-submit {
-  background-color: hsl(90, 50%, 40%);
-  margin: 5px;
+.visit,
+#js-submit {
+	background-color: hsl(90, 50%, 40%);
+	margin: 5px;
 }
 
-.bookmark-delete, #js-cancel {
-  background-color: hsl(0, 50%, 40%);
-  margin: 5px;
+.bookmark-delete,
+#js-cancel {
+	background-color: hsl(0, 50%, 40%);
+	margin: 5px;
 }
 
 .hidden {
-  display: none;
+	display: none;
 }
-
 
 a {
-  text-decoration: none;
-  color: hsl(0, 100%, 100%)
+	text-decoration: none;
+	color: hsl(0, 100%, 100%);
 }
-a:link {color: hsl(0, 100%, 100%) }
-a:visited { color: hsl(0, 100%, 100%) }
-a:hover { color: hsl(0, 100%, 100%) }
-a:active { color: hsl(0, 100%, 100%) }
+a:link {
+	color: hsl(0, 100%, 100%);
+}
+a:visited {
+	color: hsl(0, 100%, 100%);
+}
+a:hover {
+	color: hsl(0, 100%, 100%);
+}
+a:active {
+	color: hsl(0, 100%, 100%);
+}
 
 @media all and (min-width: 600px) {
-  .bookmark-item {
-    flex-direction: row;
-  } 
+	.bookmark-item {
+		flex-direction: row;
+	}
 
-  main {
-    margin: 200px 0;
-  }
-  
+	main {
+		margin: 200px 0;
+	}
 }
